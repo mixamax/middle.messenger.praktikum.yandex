@@ -1,0 +1,36 @@
+.inputform-wrapper {
+    width: 100%;
+    height: 33px;
+    border-bottom: solid 1px #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.inputform-wrapper:last-child {
+    border: none;
+}
+
+.inputform-label {
+    color: var(--text-dark-color);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+}
+.inputform {
+    font-family: Inter, sans-serif;
+    width: fit-content;
+    border: none;
+    outline: none;
+    background: none;
+    color: var(--text-middle-color);
+    text-align: right;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+    border: none;
+    outline: none;
+}
+
+.inputform::placeholder {
+    font-family: Inter, sans-serif;
+}

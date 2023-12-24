@@ -1,0 +1,19 @@
+{{#>PageWrapper}}
+    {{#if modal}}
+    {{>Modal}}
+    {{/if}}
+    {{#>LeftBar width="normal"}}
+        {{>LeftBarHeader}}
+        <hr class="chatslist-line">
+        {{>ChatsList }}
+     {{/LeftBar}}
+     {{#>MainWindow}}
+        {{>WindowHeader class=active.headerClass}}
+        {{>MessageField}}
+        {{>WindowFooter class=active.footerClass}}
+         {{#if popUp}}
+          {{>PopUp item = popUp.upPopUp path=path text=text position="up"}}
+          {{>PopUp item = popUp.downPopUp path=path text=text position="down"}}
+          {{/if}}
+    {{/MainWindow}}
+{{/PageWrapper}}

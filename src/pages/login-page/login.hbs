@@ -1,0 +1,11 @@
+{{#>PageWrapper }}
+{{#>FormWrapper size="m" title="Вход"}}
+{{>Input id="input-login" placeholder="Логин" label-title="Логин" type="text" name="login"}}
+{{>FormErrMessage error-text="Неверный логин"}}
+{{>Input id="input-password" placeholder="Пароль" label-title="Пароль" type="password" name="password"}}
+{{#>ButtonsField}}
+    {{>MainButton class="contained" text="Авторизоваться"}}
+     {{>MainButton class="onlytext" text="Нет аккаунта?"}}
+{{/ButtonsField}}
+{{/FormWrapper}}
+{{/PageWrapper}}

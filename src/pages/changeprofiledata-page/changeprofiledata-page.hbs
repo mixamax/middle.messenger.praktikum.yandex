@@ -1,0 +1,20 @@
+{{#>PageWrapper}}
+    {{#if modal}}
+    {{>Modal}}
+    {{/if}}
+   {{#>LeftBar width="narrow"}}
+      {{>LeftBarBackButton}}
+    {{/LeftBar}}
+    {{#>MainWindow}}
+       {{>ProfilePageAvatar}}
+       {{#>ProfileForm}}
+          {{>InputForm id="inputform-mail" title="Почта" type="text" value="ivan@ivan.ru" name="email"}}
+          {{>InputForm id="inputform-login" title="Логин" type="text" value="ivan" name="login"}}
+          {{>InputForm id="inputform-name" title="Имя" type="text" value="Иван" name="first_name"}}
+          {{>InputForm id="inputform-lastname" title="Фамилия" type="text" value="Иванов" name="second_name"}}
+          {{>InputForm id="inputform-nick" title="Имя в чате" type="text" value="Иван" name="display_name"}}
+          {{>InputForm id="inputform-tel" title="Телефон" type="text" value="222-32-22" name="phone"}}
+       {{/ProfileForm}}
+       {{>MainButton class="contained " text="Сохранить" mt="50px"}}
+    {{/MainWindow}}
+{{/PageWrapper}}

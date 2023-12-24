@@ -1,0 +1,21 @@
+.main-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+    height: 37px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+.onlytext {
+    color: var(--theme-active-color);
+}
+.contained {
+    width: 280px;
+    border-radius: 8px;
+    background: var(--theme-active-color);
+    color: var(--text-light-color);
+}
