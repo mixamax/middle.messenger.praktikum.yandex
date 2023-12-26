@@ -21,3 +21,4 @@ export { MainWindow } from "./main-window";
 export { LeftBarHeader } from "./left-bar-header";
 export { ProfilePageAvatar } from "./profile-page-avatar";
 export { LeftBarBackButton } from "./leftbar-backbutton";
+export { MainWrapper } from "./main-wrapper";
