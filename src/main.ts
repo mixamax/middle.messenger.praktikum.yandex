@@ -14,21 +14,29 @@ const popUpData = {
             {
                 path: "/images/add-icon.svg",
                 text: "Добавить пользователя",
+                alt: "плюс",
             },
             {
                 path: "/images/delete-icon.svg",
                 text: "Удалить пользователя",
+                alt: "крест",
             },
         ],
         downPopUp: [
             {
                 path: "/images/media-icon-blue.svg",
                 text: "Фото или Видео",
+                alt: "иконка_медиа",
             },
-            { path: "/images/file-icon.svg", text: "Файл" },
+            {
+                path: "/images/file-icon.svg",
+                text: "Файл",
+                alt: "иконка_файла",
+            },
             {
                 path: "/images/location-icon.svg",
                 text: "Локация",
+                alt: "иконка_локации",
             },
         ],
     },
