@@ -8,4 +8,5 @@
 .pages-list-page {
     cursor: pointer;
     text-decoration: underline;
+    color: var(--text-light-color);
 }
