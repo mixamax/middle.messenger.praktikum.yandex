@@ -1,0 +1,12 @@
+.leftbar-backbutton {
+    border: none;
+    width: 28px;
+    height: 28px;
+    background-color: var(--theme-active-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: rotate(180deg);
+}

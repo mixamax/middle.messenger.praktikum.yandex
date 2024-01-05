@@ -1,0 +1,16 @@
+{{#>PageWrapper}}
+{{#>FormWrapper size="l" title="Aвторизация"}}
+{{>Input id="input-auth-email" placeholder="Почта" label-title="Почта" type="email" name="email"}}
+{{>Input id="input-auth-login" placeholder="Логин" label-title="Логин" type="text" name="login"}}
+{{>Input id="input-auth-name" placeholder="Имя" label-title="Имя" type="text" name="first_name"}}
+{{>Input id="input-auth-lastname" placeholder="Фамилия" label-title="Фамилия" type="text" name="second_name"}}
+{{>Input id="input-auth-tel" placeholder="Телефон" label-title="Телефон" type="tel" name="phone"}}
+{{>Input id="input-auth-password" placeholder="Пароль" label-title="Пароль" type="password" input-error="input-error" name="password"}}
+{{>Input id="input-auth-passwordrepeat" placeholder="Пароль (еще раз)" label-title="Пароль (еще раз)" type="password" input-error="input-error" name="password_repeat"}}
+{{>FormErrMessage error-text="Пароли не совпадают"}}
+{{#>ButtonsField}}
+    {{>MainButton class="contained" text="Зарегистрироваться"}}
+     {{>MainButton class="onlytext" text="Войти"}}
+{{/ButtonsField}}
+{{/FormWrapper}}
+{{/PageWrapper}}

@@ -1,0 +1,17 @@
+.chatslist {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding: 0;
+}
+.chatslist::-webkit-scrollbar {
+    width: 0px; /* ширина всей полосы прокрутки */
+}
+
+.chatslist-line {
+    width: calc(100% - 20px);
+    min-height: 1px;
+    background-color: #eaeaea;
+    margin: 2px 10px;
+    border: none;
+}

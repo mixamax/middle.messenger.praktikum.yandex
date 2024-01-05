@@ -1,0 +1,9 @@
+export { LoginPage } from "./login-page";
+export { AuthPage } from "./auth-page";
+export { ChatPage } from "./chat-page";
+export { PagesList } from "./pages-list";
+export { ProfilePage } from "./profile-page";
+export { ChangePassPage } from "./changepass-page";
+export { ChangeProfileDataPage } from "./changeprofiledata-page";
+export { Page404 } from "./404-page";
+export { Page500 } from "./500-page";

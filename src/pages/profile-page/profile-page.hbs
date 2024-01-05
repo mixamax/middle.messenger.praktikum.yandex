@@ -1,0 +1,24 @@
+{{#>PageWrapper}}
+    {{#if modal}}
+    {{>Modal}}
+    {{/if}}
+    {{#>LeftBar width="narrow"}}
+         {{>LeftBarBackButton}}
+    {{/LeftBar}}
+ {{#>MainWindow}}
+     {{>ProfilePageAvatar}}
+     {{#>ProfileForm}}
+          {{>ProfileDataItem title="Почта" value="ivan@ivan.ru"}}
+          {{>ProfileDataItem title="Логин" value="ivan"}}
+          {{>ProfileDataItem title="Имя" value="Иван"}}
+          {{>ProfileDataItem title="Фамилия" value="Иванов"}}
+          {{>ProfileDataItem title="Имя в чате" value="Иван"}}
+          {{>ProfileDataItem title="Телефон" value="222-32-22"}}
+     {{/ProfileForm}}
+     {{#>ProfileForm mt="40px"}}
+        {{>ChangeDataItem color="blue" text="Изменить данные"}}
+        {{>ChangeDataItem color="blue" text="Изменить пароль"}}
+          {{>ChangeDataItem color="red" text="Выйти"}}
+     {{/ProfileForm}}
+  {{/MainWindow}}
+{{/PageWrapper}}

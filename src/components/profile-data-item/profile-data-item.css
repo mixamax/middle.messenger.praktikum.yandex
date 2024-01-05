@@ -1,0 +1,26 @@
+.profile-data-item__wrapper {
+    width: 100%;
+    height: 33px;
+    border-bottom: solid 1px #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.profile-data-item__wrapper:last-child {
+    border: none;
+}
+
+.profile-data-item__title {
+    color: var(--text-dark-color);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+}
+.profile-data-item__value {
+    width: fit-content;
+    color: var(--text-middle-color);
+    text-align: right;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 13px;
+}

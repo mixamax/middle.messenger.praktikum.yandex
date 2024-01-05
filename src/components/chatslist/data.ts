@@ -1,0 +1,68 @@
+export const chatslistData = {
+    chats: [
+        {
+            title: "Андрей",
+            text: "Изображение",
+            messageFromOwner: false,
+            time: "12:45",
+            messageNumber: 3,
+        },
+        {
+            title: "Киноклуб",
+            text: "стикер",
+            messageFromOwner: true,
+            time: "10:10",
+            messageNumber: 0,
+        },
+        {
+            activeClass: "chatslist-item__active",
+            title: "Вадим",
+            text: "Круто!",
+            messageFromOwner: true,
+            time: "12:42",
+            messageNumber: 0,
+        },
+        {
+            title: "Илья",
+            text: "Изображение",
+            messageFromOwner: false,
+            time: "Пт",
+            messageNumber: 3,
+        },
+        {
+            title: "Киноклуб",
+            text: "стикер",
+            messageFromOwner: true,
+            time: "10:10",
+            messageNumber: 0,
+        },
+        {
+            title: "Илья",
+            text: "Друзья, у меня для вас особенный выпуск новостей!...",
+            messageFromOwner: false,
+            time: "12:42",
+            messageNumber: 42,
+        },
+        {
+            title: "Андрей",
+            text: "Изображение",
+            messageFromOwner: false,
+            time: "12:45",
+            messageNumber: 3,
+        },
+        {
+            title: "Киноклуб",
+            text: "стикер",
+            messageFromOwner: true,
+            time: "10:10",
+            messageNumber: 0,
+        },
+        {
+            title: "Илья",
+            text: "Друзья, у меня для вас особенный выпуск новостей!...",
+            messageFromOwner: false,
+            time: "12:42",
+            messageNumber: 42,
+        },
+    ],
+};

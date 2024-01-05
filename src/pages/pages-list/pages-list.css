@@ -1,0 +1,12 @@
+.pages-list {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    margin-top: 100px;
+    color: var(--text-light-color);
+}
+.pages-list-page {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--text-light-color);
+}

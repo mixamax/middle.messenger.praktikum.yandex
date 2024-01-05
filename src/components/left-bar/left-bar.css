@@ -1,0 +1,18 @@
+.leftbar {
+    height: 100%;
+    background-color: #fbfbfb;
+    border-right: solid 1px #eaeaea;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.leftbar[leftbar-width="normal"] {
+    min-width: 310px;
+    width: 310px;
+}
+.leftbar[leftbar-width="narrow"] {
+    min-width: 64px;
+    width: 64px;
+    align-items: center;
+    justify-content: center;
+}

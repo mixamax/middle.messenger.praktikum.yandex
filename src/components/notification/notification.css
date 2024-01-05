@@ -1,0 +1,19 @@
+.notification-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: var(--text-dark-color);
+}
+
+.notification-title {
+    font-size: 40px;
+    line-height: 40px;
+    margin: 0;
+}
+.notification-text {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 20px;
+}

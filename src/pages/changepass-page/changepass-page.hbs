@@ -1,0 +1,17 @@
+{{#>PageWrapper}}
+    {{#if modal}}
+    {{>Modal}}
+    {{/if}}
+      {{#>LeftBar width="narrow"}}
+         {{>LeftBarBackButton}}
+      {{/LeftBar}}
+      {{#>MainWindow}}
+        {{>ProfilePageAvatar}}
+        {{#>ProfileForm}}
+        {{>InputForm id="old" title="Старый пароль" type="password" value="wowoeiwow" name="oldPassword"}}
+        {{>InputForm id="new" title="Новый пароль" type="password" value="wowoeiwow" name="newPassword"}}
+        {{>InputForm id="repeatnew" title="Повторите новый пароль" type="password" value="wowoeiwow"}}
+        {{/ProfileForm}}
+        {{>MainButton class="contained " text="Сохранить" mt="152px"}}
+     {{/MainWindow}}
+{{/PageWrapper}}
