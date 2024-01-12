@@ -1,1 +1,1 @@
-export { default as ProfileDataItem } from "./profile-data-item.hbs?raw";
+export { ProfileDataItem } from "./profile-data-item";

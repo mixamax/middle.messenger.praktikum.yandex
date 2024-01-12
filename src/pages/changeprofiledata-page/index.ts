@@ -1,1 +1,1 @@
-export { default as ChangeProfileDataPage } from "./changeprofiledata-page.hbs?raw";
+export { default as ChangeProfileDataPage } from "./changeprofiledata-page";

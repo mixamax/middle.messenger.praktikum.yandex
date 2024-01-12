@@ -1,1 +1,1 @@
-export { default as WindowFooter } from "./window-footer.hbs?raw";
+export { WindowFooter } from "./window-footer";

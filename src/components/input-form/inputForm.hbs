@@ -3,10 +3,18 @@
         {{title}}
     </label>
     <input
-        id={{id}}
+        {{!-- id={{id}}
         class="inputform"
         type={{type}}
         value={{value}}
-        name={{name}}
+        name={{name}} --}}
+        {{Input
+            id=id
+            type=type
+            name=name
+            value=value
+            ref="input"
+            className="inputform"
+        }}
     />
 </div>
