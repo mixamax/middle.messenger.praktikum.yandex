@@ -8,7 +8,9 @@
         "prebuild": "tsc --noEmit",
         "build": "npm run prebuild && vite build",
         "preview": "vite preview",
-        "start": "tsc && vite build && node server.js  "
+        "start": "tsc && vite build && node server.js",
+        "lint": "stylelint \"**/*.css\"",
+        "lint:fix": "stylelint '**/*{.css,.scss}' --fix"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^6.17.0",

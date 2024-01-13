@@ -1,29 +1,29 @@
-@import "/src/components/form-wrapper/form-wrapper.css";
-@import "/src/components/input/input.css";
-@import "/src/components/input-with-label/input-with-label.css";
-@import "/src/components/form-err-message/form-err-message.css";
-@import "/src/components/main-button/main-button.css";
-@import "/src/components/chatslist-item/chatslist-item.css";
-@import "/src/components/chatslist/chatslist.css";
-@import "/src/components/window-header/window-header.css";
-@import "/src/components/window-footer/window-footer.css";
-@import "/src/components/message-field/message-field.css";
-@import "/src/components/popup/popup.css";
-@import "/src/components/modal/modal.css";
-@import "/src/components/profile-form/profileForm.css";
-@import "/src/components/input-form/inputForm.css";
-@import "/src/components/profile-data-item/profile-data-item.css";
-@import "/src/components/change-data-item/change-data-item.css";
-@import "/src/components/notification/notification.css";
-@import "/src/components/page-wrapper/page-wrapper.css";
-@import "/src/components/buttons-field/buttons-field.css";
-@import "/src/components/left-bar/left-bar.css";
-@import "/src/components/main-window/main-window.css";
-@import "/src/components/left-bar-header/left-bar-header.css";
-@import "/src/components/profile-page-avatar/profile-page-avatar.css";
-@import "/src/components/leftbar-backbutton/leftbar-backbutton.css";
-@import "/src/components/modal-avatar/modal-avatar.css";
-@import "/src/pages/pages-list/pages-list.css";
+@import url("/src/components/form-wrapper/form-wrapper.css");
+@import url("/src/components/input/input.css");
+@import url("/src/components/input-with-label/input-with-label.css");
+@import url("/src/components/form-err-message/form-err-message.css");
+@import url("/src/components/main-button/main-button.css");
+@import url("/src/components/chatslist-item/chatslist-item.css");
+@import url("/src/components/chatslist/chatslist.css");
+@import url("/src/components/window-header/window-header.css");
+@import url("/src/components/window-footer/window-footer.css");
+@import url("/src/components/message-field/message-field.css");
+@import url("/src/components/popup/popup.css");
+@import url("/src/components/modal/modal.css");
+@import url("/src/components/profile-form/profileForm.css");
+@import url("/src/components/input-form/inputForm.css");
+@import url("/src/components/profile-data-item/profile-data-item.css");
+@import url("/src/components/change-data-item/change-data-item.css");
+@import url("/src/components/notification/notification.css");
+@import url("/src/components/page-wrapper/page-wrapper.css");
+@import url("/src/components/buttons-field/buttons-field.css");
+@import url("/src/components/left-bar/left-bar.css");
+@import url("/src/components/main-window/main-window.css");
+@import url("/src/components/left-bar-header/left-bar-header.css");
+@import url("/src/components/profile-page-avatar/profile-page-avatar.css");
+@import url("/src/components/leftbar-backbutton/leftbar-backbutton.css");
+@import url("/src/components/modal-avatar/modal-avatar.css");
+@import url("/src/pages/pages-list/pages-list.css");
 
 :root {
     font-family: Inter, sans-serif;
@@ -32,11 +32,13 @@
     font-style: normal;
     box-sizing: border-box;
     background-color: #999;
+
     --text-dark-color: #1e1e1e;
     --text-middle-color: #999;
     --text-light-color: #fff;
     --theme-active-color: #3369f3;
 }
+
 body {
     margin: 0 auto;
     max-width: 1280px;

@@ -5,6 +5,7 @@
     margin-top: 100px;
     color: var(--text-light-color);
 }
+
 .pages-list-page {
     cursor: pointer;
     text-decoration: underline;
