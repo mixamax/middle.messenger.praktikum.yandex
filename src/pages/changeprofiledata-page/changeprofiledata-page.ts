@@ -1,7 +1,7 @@
 import Block from "../../core/Block";
 import { InputForm } from "../../components";
 import { ModalAvatar } from "../../components";
-import { navigate } from "../../core/navigate";
+// import { navigate } from "../../core/navigate";
 
 interface IProps {
     saveChanges: (e: Event) => void;

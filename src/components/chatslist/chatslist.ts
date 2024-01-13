@@ -11,7 +11,7 @@ interface IProps {
         messageNumber: number;
         activeClass?: string;
     }[];
-    onClick: (e: Event, id: string) => void;
+    onClick: (id: string) => void;
     changeActiveChat: (id: string) => void;
 }
 
@@ -23,7 +23,7 @@ export class ChatsList extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
-            onClick: (e, id) => this.props.changeActiveChat(id),
+            onClick: (id) => this.props.changeActiveChat(id),
         });
     }
 

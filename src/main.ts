@@ -8,15 +8,8 @@ Object.entries(Components).forEach(([name, component]) =>
     Handlebars.registerPartial(name, component)
 );
 
-// function navigate(page: string) {
-//     //@ts-ignore
-//     const [source, context] = pages[page];
-//     const container = document.getElementById("app");
-//     container!.innerHTML = Handlebars.compile(source)(context);
-// }
-
 //************************************************************************* */
-
+//@ts-ignorets.ignore
 registerComponent("Input", Components.Input);
 registerComponent("InputWithLabel", Components.InputWithLabel);
 registerComponent("InputForm", Components.InputForm);

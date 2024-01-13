@@ -1,6 +1,5 @@
 import Block from "../../core/Block";
-import { InputWithLabel } from "../../components";
-import { navigate } from "../../core/navigate";
+// import { navigate } from "../../core/navigate";
 import { chatslistData } from "../../components/chatslist/data";
 import { popUpData, IpopUpData } from "../../components/popup/popup-data";
 import { PopUp } from "../../components";
@@ -9,9 +8,6 @@ import { ChatsList } from "../../components";
 import { WindowHeader } from "../../components";
 
 interface IProps {
-    // inputValidateLogin: () => void;
-    // inputValidatePass: () => void;
-    // onLogin: (e: Event) => void;
     showClosePopup: (popup: string) => void;
     openModal: (e: Event) => void;
     closeUpPopup: () => void;
@@ -33,7 +29,9 @@ type Refs = {
     chatlist: ChatsList;
     modal: Modal;
     popap: PopUp;
-    [key: string]: PopUp | Modal | ChatsList | WindowHeader;
+    upPopUp: PopUp;
+    downPopUp: PopUp;
+    // [key: string]: PopUp ;
 };
 
 class ChatPage extends Block<IProps, Refs> {
@@ -44,7 +42,9 @@ class ChatPage extends Block<IProps, Refs> {
             popUpData: popUpData,
 
             showClosePopup: (popup: string) => {
-                const popUp = this.refs[popup];
+                // const popUp = this.refs[popup];
+                let popUp = this.refs.upPopUp;
+                if (popup === "downPopUp") popUp = this.refs.downPopUp;
                 if (popUp.isHidden()) {
                     popUp.setProps({ className: "" });
                 } else {

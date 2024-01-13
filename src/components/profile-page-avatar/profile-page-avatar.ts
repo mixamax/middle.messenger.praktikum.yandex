@@ -2,7 +2,7 @@ import Block from "../../core/Block";
 
 interface IProps {
     events: {
-        click: (e: Event) => void;
+        click: () => void;
     };
     onAvatarClick: () => void;
 }
@@ -14,7 +14,7 @@ export class ProfilePageAvatar extends Block<IProps, Ref> {
         super({
             ...props,
             events: {
-                click: (e) => props.onAvatarClick(),
+                click: () => props.onAvatarClick(),
             },
         });
     }

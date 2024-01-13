@@ -2,9 +2,9 @@ import Block from "../../core/Block";
 
 interface IProps {
     events: {
-        click: (e: Event) => void;
+        click: () => void;
     };
-    onClick: (e: Event, id: string) => void;
+    onClick: (id: string) => void;
     id: string;
 }
 
@@ -16,7 +16,7 @@ export class ChatsListItem extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
-            events: { click: (e) => this.props.onClick(e, this.getId()) },
+            events: { click: () => this.props.onClick(this.getId()) },
         });
     }
     public getId() {

@@ -6,18 +6,18 @@ export type RefType = {
     [key: string]: Element | Block<object>;
 };
 
-export interface BlockClass<P extends object, R extends RefType>
+export interface BlockClass<P extends object, R extends RefType = RefType>
     extends Function {
     new (props: P): Block<P, R>;
     componentName?: string;
 }
 
-type propType = {
-    events?: { [key: string]: () => any };
-    [key: string]: any;
-};
+// type propType = {
+//     events?: { [key: string]: () => any };
+//     [key: string]: any;
+// };
 
-class Block<Props extends propType = propType, Refs extends RefType = RefType> {
+class Block<Props extends object, Refs extends RefType = RefType> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -45,10 +45,18 @@ class Block<Props extends propType = propType, Refs extends RefType = RefType> {
     }
 
     _addEvents() {
+        //@ts-ignore
         const { events = {} } = this.props;
 
         Object.keys(events).forEach((eventName) => {
             this._element!.addEventListener(eventName, events[eventName]);
+        });
+    }
+    _removeEvents() {
+        //@ts-ignore
+        const { events = {} } = this.props;
+        Object.keys(events).forEach((eventName) => {
+            this._element!.removeEventListener(eventName, events[eventName]);
         });
     }
 
@@ -132,8 +140,9 @@ class Block<Props extends propType = propType, Refs extends RefType = RefType> {
     private _render() {
         const fragment = this.compile(this.render(), this.props);
 
-        const newElement = fragment.firstElementChild as HTMLElement;
+        if (this._element) this._removeEvents();
 
+        const newElement = fragment.firstElementChild as HTMLElement;
         if (this._element) {
             this._element.replaceWith(newElement);
         }
@@ -161,11 +170,12 @@ class Block<Props extends propType = propType, Refs extends RefType = RefType> {
         this.refs = Array.from(fragment.querySelectorAll("[ref]")).reduce(
             (list, element) => {
                 const key = element.getAttribute("ref")!;
+                //@ts-ignore
                 list[key] = element as HTMLElement;
                 element.removeAttribute("ref");
                 return list;
             },
-            contextAndStubs.__refs as RefType
+            contextAndStubs.__refs as Refs
         ) as Refs;
 
         contextAndStubs.__children?.forEach(({ embed }: any) => {
