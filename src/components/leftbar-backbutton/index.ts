@@ -1,1 +1,1 @@
-export { default as LeftBarBackButton } from "./leftbar-backbutton.hbs?raw";
+export { LeftBarBackButton } from "./leftbar-backbutton";

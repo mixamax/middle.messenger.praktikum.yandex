@@ -1,1 +1,1 @@
-export { default as PopUp } from "./popup.hbs?raw";
+export { PopUp } from "./popup";

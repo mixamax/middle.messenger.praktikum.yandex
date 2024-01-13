@@ -1,4 +1,5 @@
 export { FormWrapper } from "./form-wrapper";
+export { InputWithLabel } from "./input-with-label";
 export { Input } from "./input";
 export { FormErrMessage } from "./form-err-message";
 export { MainButton } from "./main-button";
@@ -22,3 +23,4 @@ export { LeftBarHeader } from "./left-bar-header";
 export { ProfilePageAvatar } from "./profile-page-avatar";
 export { LeftBarBackButton } from "./leftbar-backbutton";
 export { MainWrapper } from "./main-wrapper";
+export { ModalAvatar } from "./modal-avatar";

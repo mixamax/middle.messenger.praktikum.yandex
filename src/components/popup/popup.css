@@ -34,3 +34,6 @@
     top: 59px;
     z-index: 10;
 }
+.popup-hidden {
+    display: none;
+}

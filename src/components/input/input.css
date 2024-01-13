@@ -1,4 +1,4 @@
-.input-wrapper {
+/* .input-wrapper {
     width: 280px;
     border-bottom: solid 1px var(--theme-active-color);
     display: flex;
@@ -11,7 +11,7 @@
     font-weight: 500;
     line-height: 9px;
     padding-left: 2px;
-}
+} */
 .input-custom {
     width: 100%;
     border: none;

@@ -18,6 +18,10 @@
     text-decoration: none;
     width: 100%;
     gap: 8px;
+    cursor: inherit;
+}
+.search-block__link > span {
+    cursor: pointer;
 }
 .search-block__input {
     outline: none;
