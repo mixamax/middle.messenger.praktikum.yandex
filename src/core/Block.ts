@@ -99,7 +99,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
-
+    //@ts-ignore
     protected componentDidUpdate(oldProps: any, newProps: any) {
         return true;
     }
