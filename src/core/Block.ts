@@ -12,11 +12,6 @@ export interface BlockClass<P extends object, R extends RefType = RefType>
     componentName?: string;
 }
 
-// type propType = {
-//     events?: { [key: string]: () => any };
-//     [key: string]: any;
-// };
-
 class Block<Props extends object, Refs extends RefType = RefType> {
     static EVENTS = {
         INIT: "init",
@@ -96,14 +91,14 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         );
     }
 
-    private _componentDidUpdate(oldProps: any, newProps: any) {
+    private _componentDidUpdate(oldProps: Props, newProps: Props) {
         if (this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    protected componentDidUpdate(oldProps: any, newProps: any) {
+    protected componentDidUpdate(oldProps: Props, newProps: Props) {
         return true;
     }
 
