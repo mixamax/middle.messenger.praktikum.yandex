@@ -45,6 +45,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
     }
 
     _addEvents() {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const { events = {} } = this.props;
 
@@ -53,6 +54,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         });
     }
     _removeEvents() {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const { events = {} } = this.props;
         Object.keys(events).forEach((eventName) => {
@@ -99,6 +101,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     protected componentDidUpdate(oldProps: any, newProps: any) {
         return true;
@@ -170,6 +173,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         this.refs = Array.from(fragment.querySelectorAll("[ref]")).reduce(
             (list, element) => {
                 const key = element.getAttribute("ref")!;
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
                 list[key] = element as HTMLElement;
                 element.removeAttribute("ref");

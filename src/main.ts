@@ -9,7 +9,6 @@ Object.entries(Components).forEach(([name, component]) =>
 );
 
 //************************************************************************* */
-//@ts-ignorets.ignore
 registerComponent("Input", Components.Input);
 registerComponent("InputWithLabel", Components.InputWithLabel);
 registerComponent("InputForm", Components.InputForm);

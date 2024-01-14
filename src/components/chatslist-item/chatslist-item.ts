@@ -26,7 +26,6 @@ export class ChatsListItem extends Block<IProps, Ref> {
     protected render(): string {
         const { id } = this.props;
         return `
-            
                  <li id="${id}" class="chatslist-item {{activeClass}}" ref="item">
                      <div class="chatslist-item__avatar">
                          <img src="/images/avatar-sceleton.svg" alt="аватарка" />
