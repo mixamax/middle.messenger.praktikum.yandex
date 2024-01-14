@@ -7,6 +7,7 @@ interface IProps {
         click: (e: Event) => void;
     };
     actionWithUser: (e: Event) => void;
+    title: string;
 }
 
 type Ref = {

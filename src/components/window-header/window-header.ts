@@ -8,6 +8,7 @@ interface IProps {
     events: {
         click: (e: Event) => void;
     };
+    username: string;
 }
 
 type Ref = {

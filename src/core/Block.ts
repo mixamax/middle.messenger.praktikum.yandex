@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
 
 export type RefType = {
-    [key: string]: Element | Block<object>;
+    [key: string]: Element | Block<object> | object;
 };
 
 export interface BlockClass<P extends object, R extends RefType = RefType>
@@ -11,6 +11,10 @@ export interface BlockClass<P extends object, R extends RefType = RefType>
     new (props: P): Block<P, R>;
     componentName?: string;
 }
+
+type setProps<T> = {
+    [key: string]: T[keyof T];
+};
 
 class Block<Props extends object, Refs extends RefType = RefType> {
     static EVENTS = {
@@ -123,7 +127,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
 
     componentWillUnmount() {}
 
-    setProps = (nextProps: any) => {
+    setProps = (nextProps: setProps<Props>) => {
         if (!nextProps) {
             return;
         }
@@ -206,19 +210,19 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         return this._element;
     }
 
-    _makePropsProxy(props: any) {
+    _makePropsProxy(props: Props) {
         // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
         const self = this;
 
         return new Proxy(props, {
             get(target, prop) {
-                const value = target[prop];
+                const value = target[prop as keyof typeof target];
                 return typeof value === "function" ? value.bind(target) : value;
             },
             set(target, prop, value) {
                 const oldTarget = { ...target };
 
-                target[prop] = value;
+                target[prop as keyof typeof target] = value;
 
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим

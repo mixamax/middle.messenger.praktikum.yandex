@@ -1,12 +1,14 @@
 import Block from "../../core/Block";
 import { InputWithLabel } from "..";
-
+// import { RefType } from "../../core/Block";
+// import { BlockClass } from "../../core/Block";
 interface IProps {
     closeUpPopup: () => void;
     events: {
         click: (e: Event) => void;
     };
     actionWithAvatar: (e: Event) => void;
+    hiddenClass: string;
 }
 
 type Ref = {
