@@ -4,8 +4,9 @@
     overflow-y: scroll;
     padding: 0;
 }
+
 .chatslist::-webkit-scrollbar {
-    width: 0px; /* ширина всей полосы прокрутки */
+    width: 0; /* ширина всей полосы прокрутки */
 }
 
 .chatslist-line {

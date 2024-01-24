@@ -9,16 +9,19 @@
 .chatslist-item__active {
     background-color: #e4edfd;
 }
+
 .chatslist-item__avatar {
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 47px;
 }
+
 .chatslist-item__description {
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    cursor: context-menu;
 }
 
 .chatslist-item__title {
@@ -27,28 +30,36 @@
     font-size: 13px;
     font-weight: 600;
     line-height: 13px;
+    cursor: inherit;
 }
+
 .chatslist-item__lasttext {
     color: var(--text-middle-color);
     font-size: 12px;
     font-weight: 500;
     line-height: 15px;
     margin: 4px 0;
+    cursor: inherit;
 }
+
 .chatslist-item__timeinfo {
     width: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    cursor: context-menu;
 }
+
 .chatslist-item__time {
     color: var(--text-middle-color);
     text-align: right;
     font-size: 9px;
     font-weight: 500;
     line-height: 13px;
+    cursor: inherit;
 }
+
 .chatslist-item__number {
     height: 20px;
     min-width: 20px;
@@ -61,7 +72,9 @@
     font-size: 11px;
     font-weight: 500;
     line-height: 20px;
+    cursor: inherit;
 }
+
 .chatslist-item__lasttext__darktext {
     color: var(--text-dark-color);
 }

@@ -1,1 +1,1 @@
-export { default as Notification } from "./notification.hbs?raw";
+export { Notification } from "./notification";

@@ -8,12 +8,15 @@
     padding-bottom: 17px;
     gap: 3px;
 }
+
 .form-wrapper[form-wrapper__height="l"] {
     height: 615px;
 }
+
 .form-wrapper[form-wrapper__height="m"] {
     height: 460px;
 }
+
 .form-wrapper[form-wrapper__height="s"] {
     height: 257px;
 }
@@ -27,6 +30,7 @@
     line-height: 20px;
     padding-bottom: 25px;
 }
+
 .form-wrapper-title[form-wrapper-title__padding="l"],
 .form-wrapper-title[form-wrapper-title__padding="m"] {
     padding-top: 50px;

@@ -1,0 +1,11 @@
+.modal-avatar-text {
+    width: 122px;
+    margin-top: 18px;
+    color: var(--theme-active-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}

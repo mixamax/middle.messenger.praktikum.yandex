@@ -1,0 +1,8 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "selector-class-pattern": null,
+        "selector-pseudo-class-no-unknown": null
+    },
+    "ignoreFiles": ["dist/assets/*.css"]
+}

@@ -6,6 +6,7 @@
     justify-content: flex-start;
     align-items: center;
 }
+
 .dataChangeForm-wrapper:last-child {
     border: none;
 }
@@ -23,9 +24,11 @@
     line-height: 13px;
     cursor: pointer;
 }
+
 .dataChangeForm-button__blue {
     color: var(--theme-active-color);
 }
+
 .dataChangeForm-button__red {
     color: #f00;
 }

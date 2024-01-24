@@ -1,1 +1,1 @@
-export { default as PagesList } from "./pages-list.hbs?raw";
+export { default as PagesList } from "./pages-list";

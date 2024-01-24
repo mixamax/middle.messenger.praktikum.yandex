@@ -8,3 +8,7 @@
     width: 280px;
     padding-top: 7px;
 }
+
+.form-err-message-hidden {
+    display: none;
+}
