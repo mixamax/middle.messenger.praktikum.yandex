@@ -10,18 +10,24 @@ const initAppService = async () => {
     try {
         userInfo = await getUser();
     } catch (error) {
-        router.go("/");
+        if (window.location.pathname === "/sign-up") {
+            router.go("/sign-up");
+        } else {
+            router.go("/");
+        }
+
         return;
     }
     appStore.set({ user: userInfo });
 
     initChats();
 
-    if (
-        userInfo &&
-        (window.location.pathname === "/" ||
-            window.location.pathname === "/sign-up")
-    ) {
+    // if (
+    //     userInfo &&
+    //     (window.location.pathname === "/" ||
+    //         window.location.pathname === "/sign-up")
+    // )
+    if (userInfo && window.location.pathname === "/") {
         router.go("/messanger");
     } else {
         // window.history.pushState({}, "", "/");
