@@ -1,5 +1,4 @@
 import Block from "../../core/Block";
-import router from "../../core/router";
 
 interface IProps {
     onClick: (e: Event) => void;

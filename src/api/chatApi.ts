@@ -1,6 +1,6 @@
 import { HTTPTransport } from "../core/httpTransport";
 import { Chat } from "../type";
-import { APIError, ChatDTO, CreateChat, AddDeleteUsers } from "./type";
+import { APIError, CreateChat, AddDeleteUsers } from "./type";
 
 export type TokenResponse = {
     token: string;

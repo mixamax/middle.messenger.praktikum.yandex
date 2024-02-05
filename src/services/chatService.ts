@@ -1,9 +1,7 @@
 import ChatApi from "../api/chatApi";
 import UserApi from "../api/userApi";
 import { appStore } from "../store/appStore";
-import { AddDeleteUsers } from "../api/type";
 import { User } from "../type";
-// import { transformChats } from "../utils/apiTransformers";
 
 const chatApi = new ChatApi();
 const userApi = new UserApi();

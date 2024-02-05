@@ -1,7 +1,7 @@
 import Block from "../../core/Block";
 import { InputWithLabel } from "../../components";
-// import { navigate } from "../../core/navigate";
 import { signup } from "../../services/authService";
+import router from "../../core/router";
 
 interface IProps {
     onRegistration: (e: Event) => void;
@@ -75,7 +75,7 @@ class AuthPage extends Block<IProps, Refs> {
                 }
             },
             goToLogin: () => {
-                navigate("login");
+                router.go("/");
             },
         });
     }

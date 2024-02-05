@@ -15,8 +15,9 @@ class PagesList extends Block<IProps, Refs> {
             ...props,
             events: {
                 click: (e) => {
-                    const element = e.target as HTMLElement;
+                    // const element = e.target as HTMLElement;
                     // navigate(element.id);
+                    console.log(e);
                 },
             },
         });
