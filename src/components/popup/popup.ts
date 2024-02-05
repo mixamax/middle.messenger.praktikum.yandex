@@ -5,6 +5,7 @@ interface IProps {
     events: {
         click: (e: Event) => void;
     };
+    className: string;
 }
 
 type Ref = {

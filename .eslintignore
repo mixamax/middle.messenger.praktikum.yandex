@@ -1,4 +1,3 @@
-/dist \*_/_.min.js
-/node_modules
-/server.js
-/src/main.ts
+/dist
+/node\*modules
+/server.js \*\*/\_.min.js

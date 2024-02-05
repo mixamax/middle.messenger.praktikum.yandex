@@ -1,6 +1,9 @@
 import Block from "../../core/Block";
 import { InputForm } from "../../components";
 import { ModalAvatar } from "../../components";
+import router from "../../core/router";
+import { changeUserPass } from "../../services/userService";
+
 // import { navigate } from "../../core/navigate";
 
 interface IProps {
@@ -8,6 +11,7 @@ interface IProps {
     goToLogin: () => void;
     checkPassword: () => boolean;
     onAvatarClick: () => void;
+    goBack: (e: Event) => void;
 }
 
 type Refs = {
@@ -41,6 +45,10 @@ class ChangePassPage extends Block<IProps, Refs> {
                     console.log("oldPassword:", oldPassword.value());
                     console.log("newPassword:", newPassword.value());
                     console.log("password_repeat:", password_repeat.value());
+                    changeUserPass({
+                        oldPassword: oldPassword.value(),
+                        newPassword: newPassword.value(),
+                    });
                 }
             },
             checkPassword: () => {
@@ -53,11 +61,12 @@ class ChangePassPage extends Block<IProps, Refs> {
                     return false;
                 }
             },
+            goBack: (e) => {
+                e.preventDefault();
+                router.go("/settings");
+            },
             onAvatarClick: () =>
                 this.refs.modalavatar.setProps({ hiddenClass: "" }),
-            // goToLogin: () => {
-            //     navigate("login");
-            // },
         });
     }
 
@@ -66,7 +75,7 @@ class ChangePassPage extends Block<IProps, Refs> {
         {{#>PageWrapper}}
              {{{ModalAvatar ref="modalavatar" title="Загрузите файл" hiddenClass="modal-hidden" buttonText="Поменять"}}}
              {{#>LeftBar width="narrow"}}
-                  {{{LeftBarBackButton}}}
+                  {{{LeftBarBackButton onClick=goBack}}}
              {{/LeftBar}}
              {{#>MainWindow}}
                  {{{ProfilePageAvatar onAvatarClick=onAvatarClick}}}

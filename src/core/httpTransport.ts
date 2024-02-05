@@ -1,3 +1,5 @@
+import constants from "../constants";
+
 enum METHODS {
     GET = "GET",
     POST = "POST",
@@ -23,31 +25,31 @@ function queryStringify(data: Data) {
     return corr;
 }
 
-class HTTPTransport {
+export class HTTPTransport {
     get(url: string, options: Options = {}) {
         return this.request(
-            url,
+            `${constants.HOST}${url}`,
             { ...options, method: METHODS.GET },
             options.timeout
         );
     }
     post(url: string, options: Options = {}) {
         return this.request(
-            url,
+            `${constants.HOST}${url}`,
             { ...options, method: METHODS.POST },
             options.timeout
         );
     }
     put(url: string, options: Options = {}) {
         return this.request(
-            url,
+            `${constants.HOST}${url}`,
             { ...options, method: METHODS.PUT },
             options.timeout
         );
     }
     delete(url: string, options: Options = {}) {
         return this.request(
-            url,
+            `${constants.HOST}${url}`,
             { ...options, method: METHODS.DELETE },
             options.timeout
         );
@@ -70,7 +72,7 @@ class HTTPTransport {
             for (let key in headers) {
                 xhr.setRequestHeader(key, headers[key]);
             }
-
+            xhr.withCredentials = true;
             xhr.onabort = reject;
             xhr.onerror = reject;
             xhr.ontimeout = reject;

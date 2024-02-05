@@ -2,13 +2,13 @@ import Handlebars from "handlebars";
 import Block from "./Block";
 import { HelperOptions } from "handlebars";
 
-interface BlockComponentClass<T> {
-    new (props: unknown): T;
+interface BlockConstructable<Props extends object, R extends {}> {
+    new (props: Props): Block<Props, R>;
 }
 
-export function registerComponent<T extends BlockComponentClass<T>>(
+export function registerComponent<Props extends object, R extends {}>(
     name: string,
-    Component: typeof Block<T>
+    Component: BlockConstructable<Props, R>
 ) {
     if (name in Handlebars.helpers) {
         throw `The ${name} component is already registered!`;

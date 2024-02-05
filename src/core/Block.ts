@@ -1,21 +1,20 @@
 import EventBus from "./EventBus";
 import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
+import { isEqual } from "../../utils/isEqual";
+// import { isEqual } from "../../utils/isEqual";
 
 export type RefType = {
-    [key: string]: Element | Block<object>;
+    [key: string]: Element | Block<object> | object;
 };
 
-export interface BlockClass<P extends object, R extends RefType = RefType>
-    extends Function {
-    new (props: P): Block<P, R>;
-    componentName?: string;
-}
+type setProps<T> = {
+    [key: string]: T[keyof T];
+};
 
-// type propType = {
-//     events?: { [key: string]: () => any };
-//     [key: string]: any;
-// };
+type PlainObject<T = any> = {
+    [k in string]: T;
+};
 
 class Block<Props extends object, Refs extends RefType = RefType> {
     static EVENTS = {
@@ -45,6 +44,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
     }
 
     _addEvents() {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const { events = {} } = this.props;
 
@@ -53,6 +53,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         });
     }
     _removeEvents() {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const { events = {} } = this.props;
         Object.keys(events).forEach((eventName) => {
@@ -94,13 +95,14 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         );
     }
 
-    private _componentDidUpdate(oldProps: any, newProps: any) {
+    private _componentDidUpdate(oldProps: Props, newProps: Props) {
         if (this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
-
-    protected componentDidUpdate(oldProps: any, newProps: any) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    protected componentDidUpdate(oldProps: Props, newProps: Props) {
         return true;
     }
 
@@ -125,7 +127,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
 
     componentWillUnmount() {}
 
-    setProps = (nextProps: any) => {
+    setProps = (nextProps: setProps<Props>) => {
         if (!nextProps) {
             return;
         }
@@ -144,6 +146,11 @@ class Block<Props extends object, Refs extends RefType = RefType> {
 
         const newElement = fragment.firstElementChild as HTMLElement;
         if (this._element) {
+            if (this._element.style.display) {
+                const display = this._element.style.display;
+                newElement.style.display = display;
+            }
+
             this._element.replaceWith(newElement);
         }
 
@@ -170,6 +177,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         this.refs = Array.from(fragment.querySelectorAll("[ref]")).reduce(
             (list, element) => {
                 const key = element.getAttribute("ref")!;
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
                 list[key] = element as HTMLElement;
                 element.removeAttribute("ref");
@@ -207,20 +215,34 @@ class Block<Props extends object, Refs extends RefType = RefType> {
         return this._element;
     }
 
-    _makePropsProxy(props: any) {
+    _makePropsProxy(props: Props) {
         // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
         const self = this;
 
         return new Proxy(props, {
             get(target, prop) {
-                const value = target[prop];
+                const value = target[prop as keyof typeof target];
                 return typeof value === "function" ? value.bind(target) : value;
             },
             set(target, prop, value) {
                 const oldTarget = { ...target };
-
-                target[prop] = value;
-
+                if (
+                    typeof target[prop as keyof typeof target] === "object" &&
+                    target[prop as keyof typeof target] !== null
+                ) {
+                    if (
+                        isEqual(
+                            target[
+                                prop as keyof typeof target
+                            ] as PlainObject<any>,
+                            value
+                        )
+                    )
+                        return true;
+                } else if (target[prop as keyof typeof target] === value)
+                    return true;
+                target[prop as keyof typeof target] = value;
+                // console.log("add feature", prop, value);
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
@@ -233,7 +255,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
     }
 
     show() {
-        this.getContent()!.style.display = "block";
+        this.getContent()!.style.display = "flex";
     }
 
     hide() {

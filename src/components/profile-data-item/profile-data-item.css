@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .profile-data-item__wrapper:last-child {
     border: none;
 }
@@ -16,6 +17,7 @@
     font-weight: 500;
     line-height: 13px;
 }
+
 .profile-data-item__value {
     width: fit-content;
     color: var(--text-middle-color);

@@ -2,9 +2,9 @@ import Block from "../../core/Block";
 
 interface IProps {
     events: {
-        click: () => void;
+        click: (e: Event) => void;
     };
-    onClick: (id: string) => void;
+    onClick: (id: number) => void;
     id: string;
 }
 
@@ -16,17 +16,21 @@ export class ChatsListItem extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
-            events: { click: () => this.props.onClick(this.getId()) },
+            events: {
+                click: (e) => {
+                    e.preventDefault();
+                    this.props.onClick(this.getId());
+                },
+            },
         });
     }
     public getId() {
-        return this.refs.item.id;
+        return Number(this.refs.item.id);
     }
 
     protected render(): string {
         const { id } = this.props;
         return `
-            
                  <li id="${id}" class="chatslist-item {{activeClass}}" ref="item">
                      <div class="chatslist-item__avatar">
                          <img src="/images/avatar-sceleton.svg" alt="аватарка" />

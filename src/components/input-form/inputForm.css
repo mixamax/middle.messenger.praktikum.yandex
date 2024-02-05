@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .inputform-wrapper:last-child {
     border: none;
 }
@@ -16,11 +17,10 @@
     font-weight: 500;
     line-height: 13px;
 }
+
 .inputform {
     font-family: Inter, sans-serif;
     width: fit-content;
-    border: none;
-    outline: none;
     background: none;
     color: var(--text-middle-color);
     text-align: right;

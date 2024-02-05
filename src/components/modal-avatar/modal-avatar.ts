@@ -1,5 +1,6 @@
 import Block from "../../core/Block";
 import { InputWithLabel } from "..";
+import { changeUserAvatar } from "../../services/userService";
 
 interface IProps {
     closeUpPopup: () => void;
@@ -7,10 +8,12 @@ interface IProps {
         click: (e: Event) => void;
     };
     actionWithAvatar: (e: Event) => void;
+    hiddenClass: string;
+    closeModal: () => void;
 }
 
 type Ref = {
-    modalavatar: HTMLElement;
+    modal: HTMLElement;
     userAction: InputWithLabel;
 };
 
@@ -24,24 +27,36 @@ export class ModalAvatar extends Block<IProps, Ref> {
             actionWithAvatar: (e) => {
                 e.preventDefault();
                 console.log("Поменять");
-                this.refs.modalavatar.classList.add("modal-hidden");
+                const avatarForm = document.getElementById(
+                    "avatarform"
+                ) as HTMLFormElement;
+                const input = document.getElementById(
+                    "avatarinput"
+                ) as HTMLInputElement;
+                const file = input.files?.[0];
+                if (!avatarForm || !file) return;
+                const form = new FormData(avatarForm);
+
+                changeUserAvatar(form);
+                this.closeModal(e);
             },
         });
     }
     closeModal(e: Event) {
-        const modal = document.querySelector(".modal");
+        const modal = this.refs.modal;
         if (e.target === modal) {
-            this.refs.modalavatar.classList.add("modal-hidden");
+            this.props.closeModal();
         }
     }
 
     protected render(): string {
         return `
-        <div class="modal {{hiddenClass}}" ref="modalavatar">
-            {{#>FormWrapper title=title size="s"}}
-            <div class="modal-avatar-text">Выбрать файл на компьютере</div>
+        <div class="modal {{hiddenClass}}" ref="modal">
+            {{#>FormWrapper title=title size="s" id="avatarform"}}
+            <input id="avatarinput" type="file" name="avatar"  accept=".JPEG, .JPG, .PNG, .GIF, .WebP" hidden>
+            <label class="modal-avatar-text" for="avatarinput">Выбрать файл на компьютере</label>
             <div class="modal-button-field">
-                 {{{MainButton class="contained" text=buttonText onClick=actionWithAvatar}}}
+                 {{{MainButton class="contained" text=buttonText onClick=actionWithAvatar type="submit"}}}
             </div >
             {{/FormWrapper}}
         </div>

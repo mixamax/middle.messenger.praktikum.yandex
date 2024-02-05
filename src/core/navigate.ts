@@ -1,24 +1,24 @@
-import * as Pages from "../pages";
+// import * as Pages from "../pages";
 
-const pages = {
-    login: Pages.LoginPage,
-    auth: Pages.AuthPage,
-    changePassPage: Pages.ChangePassPage,
-    changeProfileDataPage: Pages.ChangeProfileDataPage,
-    profilePage: Pages.ProfilePage,
-    chatPage: Pages.ChatPage,
-    page404: Pages.Page404,
-    page500: Pages.Page500,
-    pagesList: Pages.PagesList,
-};
+// const pages = {
+//     login: Pages.LoginPage,
+//     auth: Pages.AuthPage,
+//     changePassPage: Pages.ChangePassPage,
+//     changeProfileDataPage: Pages.ChangeProfileDataPage,
+//     profilePage: Pages.ProfilePage,
+//     chatPage: Pages.ChatPage,
+//     page404: Pages.Page404,
+//     page500: Pages.Page500,
+//     pagesList: Pages.PagesList,
+// };
 
-export function navigate(page: string) {
-    const app = document.getElementById("app")!;
+// export function navigate(page: string) {
+//     const app = document.getElementById("app")!;
+//     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//     //@ts-ignore
+//     const Component = pages[page];
+//     const component = new Component();
 
-    //@ts-ignore
-    const Component = pages[page];
-    const component = new Component();
-
-    app.innerHTML = "";
-    app.append(component.getContent()!);
-}
+//     app.innerHTML = "";
+//     app.append(component.getContent()!);
+// }

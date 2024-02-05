@@ -5,6 +5,7 @@
     flex-direction: column-reverse;
     margin-top: 12px;
 }
+
 .input-label {
     color: var(--text-light-color);
     font-size: 9px;
@@ -12,6 +13,7 @@
     line-height: 9px;
     padding-left: 2px;
 }
+
 /* .input-custom {
     width: 100%;
     border: none;
@@ -34,6 +36,7 @@
 .input-error {
     color: #ff2f2f;
 } */
+
 /* .input-custom:not(:placeholder-shown) + .input-label {
     color: var(--text-middle-color);
 } */

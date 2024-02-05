@@ -1,4 +1,6 @@
+import { connect } from "../../../utils/connect";
 import Block from "../../core/Block";
+import { appStore } from "../../store/appStore";
 
 interface IProps {
     // mt: string;
@@ -8,13 +10,14 @@ interface IProps {
     events: {
         click: (e: Event) => void;
     };
+    username: string;
 }
 
 type Ref = {
     // input: Input;
 };
 
-export class WindowHeader extends Block<IProps, Ref> {
+class WindowHeader extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
@@ -34,6 +37,7 @@ export class WindowHeader extends Block<IProps, Ref> {
     // }
 
     protected render(): string {
+        const title = appStore.getState().activeChatTitle || "";
         return `
     <div class="window-header">
         <div class="window-header-user">
@@ -43,7 +47,7 @@ export class WindowHeader extends Block<IProps, Ref> {
                 width="34px"
                 height="34px"
             />
-            <span class="window-header-username">{{username}}</span>
+            <span class="window-header-username">${title}</span>
         </div>
         <div  data-click="circle-header-bar" class="window-header-bar {{class}}">
             <svg
@@ -64,3 +68,7 @@ export class WindowHeader extends Block<IProps, Ref> {
          `;
     }
 }
+
+export default connect((state) => ({
+    activeChatTitle: state.activeChatTitle,
+}))(WindowHeader);

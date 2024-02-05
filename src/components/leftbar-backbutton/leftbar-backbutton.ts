@@ -1,10 +1,10 @@
 import Block from "../../core/Block";
 
 interface IProps {
-    // onClick: (e: Event) => void;
-    // events: {
-    //     click: (e: Event) => void;
-    // };
+    onClick: (e: Event) => void;
+    events: {
+        click: (e: Event) => void;
+    };
 }
 
 type Ref = {};
@@ -13,7 +13,11 @@ export class LeftBarBackButton extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
-            // events: { click: (e) => this.props.onClick(e) },
+            events: {
+                click: (e) => {
+                    this.props.onClick(e);
+                },
+            },
         });
     }
 

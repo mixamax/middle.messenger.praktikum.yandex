@@ -1,4 +1,7 @@
 import Block from "../../core/Block";
+import { appStore } from "../../store/appStore";
+import constants from "../../constants";
+import { connect } from "../../../utils/connect";
 
 interface IProps {
     events: {
@@ -9,7 +12,7 @@ interface IProps {
 
 type Ref = {};
 
-export class ProfilePageAvatar extends Block<IProps, Ref> {
+class ProfilePageAvatar extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
@@ -20,13 +23,29 @@ export class ProfilePageAvatar extends Block<IProps, Ref> {
     }
 
     protected render(): string {
+        let avatarPath;
+        let width;
+        if (appStore.getState().user?.avatar) {
+            avatarPath = `${constants.HOST}/resources${
+                appStore.getState().user?.avatar
+            }`;
+            width = "100px";
+        } else {
+            avatarPath = "/images/media-icon.svg";
+            width = "30px";
+        }
+
         return `
            <div class="profile-page__avatar">
-               <img width="40px" src="/images/media-icon.svg" alt="иконка_медиа" />
+               <img width=${width} src=${avatarPath} alt="иконка_аватара" />
                <span class="profile-page__avatar-text">Поменять <br /> аватар</span>
                <div class="profile-page__avatar profile-page__avatar-mask"></div>
+               <span class="profile-page__username">${
+                   appStore.getState().user?.first_name
+               }</span>
            </div>
-           <span class="profile-page__username">Иван</span>
+           
         `;
     }
 }
+export default connect((state) => ({ user: state.user }))(ProfilePageAvatar);

@@ -1,5 +1,6 @@
 import Block from "../../core/Block";
 import { Input } from "..";
+import { connect } from "../../../utils/connect";
 
 interface IProps {
     showClosePopup: (popUp: string) => void;
@@ -14,7 +15,7 @@ type Ref = {
     msgInput: Input;
 };
 
-export class WindowFooter extends Block<IProps, Ref> {
+class WindowFooter extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
@@ -121,3 +122,8 @@ export class WindowFooter extends Block<IProps, Ref> {
          `;
     }
 }
+
+export default connect((state) => ({
+    activeChatId: state.activeChatId,
+    // messages: state.messages,
+}))(WindowFooter);
