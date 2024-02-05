@@ -1,6 +1,7 @@
 import Block from "../../core/Block";
 import { InputWithLabel } from "../../components";
-import { navigate } from "../../core/navigate";
+// import { navigate } from "../../core/navigate";
+import { signup } from "../../services/authService";
 
 interface IProps {
     onRegistration: (e: Event) => void;
@@ -50,13 +51,16 @@ class AuthPage extends Block<IProps, Refs> {
                     console.log("неправильные значения");
                     return;
                 } else {
-                    console.log("login:", login.value());
-                    console.log("password:", password.value());
-                    console.log("password_repeat:", password_repeat.value());
-                    console.log("email:", email.value());
-                    console.log("phone:", phone.value());
-                    console.log("first_name:", first_name.value());
-                    console.log("second_name:", second_name.value());
+                    const body = {
+                        first_name: first_name.value(),
+                        second_name: second_name.value(),
+                        login: login.value(),
+                        email: email.value(),
+                        password: password.value(),
+                        phone: phone.value(),
+                    };
+
+                    signup(body);
                 }
             },
             checkPassword: () => {

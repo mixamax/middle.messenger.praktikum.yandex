@@ -1,12 +1,18 @@
 import Block from "../../core/Block";
 import { InputForm } from "../../components";
 import { ModalAvatar } from "../../components";
+import router from "../../core/router";
+import { changeUserProfile } from "../../services/userService";
+import { appStore } from "../../store/appStore";
+import { connect } from "../../../utils/connect";
+
 // import { navigate } from "../../core/navigate";
 
 interface IProps {
     saveChanges: (e: Event) => void;
     onAvatarClick: () => void;
     // goToLogin: () => void;
+    goBack: (e: Event) => void;
 }
 
 type Refs = {
@@ -33,16 +39,29 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                 const display_name = this.refs.display_name;
                 if (
                     login.isErrorProps() ||
-                    login.value() ||
+                    !login.value() ||
                     email.isErrorProps() ||
-                    email.value() ||
+                    !email.value() ||
                     phone.isErrorProps() ||
-                    phone.value() ||
+                    !phone.value() ||
                     first_name.isErrorProps() ||
-                    first_name.value() ||
+                    !first_name.value() ||
                     second_name.isErrorProps() ||
-                    second_name.value()
+                    !second_name.value()
                 ) {
+                    console.log(login.value());
+                    console.log(login.isErrorProps());
+                    console.log(email.value());
+                    console.log(email.isErrorProps());
+                    console.log(phone.value());
+                    console.log(phone.isErrorProps());
+                    console.log(first_name.value());
+                    console.log(first_name.isErrorProps());
+                    console.log(second_name.value());
+                    console.log(second_name.isErrorProps());
+                    console.log(display_name.value());
+                    // console.log(display_name.isErrorProps())
+
                     console.log("неправильные значения");
                     return;
                 } else {
@@ -52,7 +71,19 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                     console.log("first_name:", first_name.value());
                     console.log("second_name:", second_name.value());
                     console.log("display_name:", display_name.value());
+                    changeUserProfile({
+                        login: login.value(),
+                        email: email.value(),
+                        phone: phone.value(),
+                        first_name: first_name.value(),
+                        second_name: second_name.value(),
+                        display_name: display_name.value(),
+                    });
                 }
+            },
+            goBack: (e) => {
+                e.preventDefault();
+                router.go("/settings");
             },
             onAvatarClick: () =>
                 this.refs.modalavatar.setProps({ hiddenClass: "" }),
@@ -64,11 +95,19 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
     }
 
     protected render(): string {
+        const login = appStore.getState().user?.login || "не указано";
+        const first_name = appStore.getState().user?.first_name || "не указано";
+        const second_name =
+            appStore.getState().user?.second_name || "не указано";
+        const email = appStore.getState().user?.email || "не указано";
+        const display_name =
+            appStore.getState().user?.display_name || "не указано";
+        const phone = appStore.getState().user?.phone || "не указано";
         return `
         {{#>PageWrapper}}
              {{{ModalAvatar ref="modalavatar" title="Загрузите файл" hiddenClass="modal-hidden" buttonText="Поменять"}}}
              {{#>LeftBar width="narrow"}}
-                 {{{LeftBarBackButton}}}
+                 {{{LeftBarBackButton onClick=goBack}}}
              {{/LeftBar}}
              {{#>MainWindow}}
                    {{{ProfilePageAvatar onAvatarClick=onAvatarClick}}}
@@ -77,7 +116,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                             id="inputform-mail" 
                             title="Почта" 
                             type="text" 
-                            value="ivan@ivan.ru" 
+                            value="${email}" 
                             name="email" 
                             errMsg = "Неверное значение" 
                             ref="email" placeholder="почта"
@@ -85,7 +124,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                         {{{InputForm 
                             id="inputform-login" 
                             title="Логин" type="text" 
-                            value="ivan" 
+                            value="${login}" 
                             name="login" 
                             errMsg = "Неверное значение" 
                             ref="login" placeholde="логин"
@@ -94,7 +133,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                             id="inputform-name" 
                             title="Имя" 
                             type="text" 
-                            value="Иван" 
+                            value="${first_name}" 
                             name="first_name" 
                             errMsg = "Неверное значение" 
                             ref="first_name" 
@@ -103,7 +142,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                         {{{InputForm 
                             id="inputform-lastname" 
                             title="Фамилия" type="text" 
-                            value="Иванов" 
+                            value="${second_name}" 
                             name="second_name" 
                             errMsg = "Неверное значение" 
                             ref="second_name" 
@@ -113,7 +152,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                             id="inputform-nick" 
                             title="Имя в чате" 
                             type="text" 
-                            value="Иван" 
+                            value="${display_name}" 
                             name="display_name" 
                             errMsg = "Неверное значение" 
                             ref="display_name" 
@@ -123,7 +162,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
                             id="inputform-tel" 
                             title="Телефон" 
                             type="text" 
-                            value="222-32-22" 
+                            value="${phone}" 
                             name="phone" 
                             errMsg = "Неверное значение" 
                             ref="phone" 
@@ -136,4 +175,7 @@ class ChangeProfileDataPage extends Block<IProps, Refs> {
         `;
     }
 }
-export default ChangeProfileDataPage;
+
+export default connect((state) => ({ user: state.user }))(
+    ChangeProfileDataPage
+);

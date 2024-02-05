@@ -24,3 +24,4 @@ export { ProfilePageAvatar } from "./profile-page-avatar";
 export { LeftBarBackButton } from "./leftbar-backbutton";
 export { MainWrapper } from "./main-wrapper";
 export { ModalAvatar } from "./modal-avatar";
+export { EmptyMainWindow } from "./emptyMainWindow";

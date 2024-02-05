@@ -50,7 +50,9 @@ export class InputForm extends Block<IProps, Ref> {
     }
 
     protected render(): string {
-        const { id, title, isError } = this.props;
+        const { id, title } = this.props;
+        let isError = this.props.isError;
+        if (isError === undefined) isError = false;
 
         return `
         <div>

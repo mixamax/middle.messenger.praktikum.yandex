@@ -49,7 +49,6 @@ export class InputWithLabel extends Block<IProps, Ref> {
 
     protected render(): string {
         const { id, labelTitle, isError } = this.props;
-
         return `
         <div ref="inputWithLabel">
             <div class="input-wrapper">

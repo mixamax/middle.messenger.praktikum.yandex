@@ -23,6 +23,7 @@
 @import url("/src/components/profile-page-avatar/profile-page-avatar.css");
 @import url("/src/components/leftbar-backbutton/leftbar-backbutton.css");
 @import url("/src/components/modal-avatar/modal-avatar.css");
+@import url("/src/components/emptyMainWindow/emptyMainWindow.css");
 @import url("/src/pages/pages-list/pages-list.css");
 
 :root {
