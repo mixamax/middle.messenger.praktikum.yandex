@@ -29,6 +29,8 @@ const initAppService = async () => {
     // )
     if (userInfo && window.location.pathname === "/") {
         router.go("/messanger");
+    } else if (userInfo && window.location.pathname === "/sign-up") {
+        router.go("/404");
     } else {
         // window.history.pushState({}, "", "/");
         router.go(window.location.pathname as PathName);
