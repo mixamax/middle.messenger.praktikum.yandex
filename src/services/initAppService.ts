@@ -22,11 +22,6 @@ const initAppService = async () => {
 
     initChats();
 
-    // if (
-    //     userInfo &&
-    //     (window.location.pathname === "/" ||
-    //         window.location.pathname === "/sign-up")
-    // )
     if (userInfo && window.location.pathname === "/") {
         router.go("/messanger");
     } else if (userInfo && window.location.pathname === "/sign-up") {
@@ -38,28 +33,35 @@ const initAppService = async () => {
 };
 
 const initChats = async () => {
-    let chats = await getChats();
-    const activeChatId = appStore.getState().activeChatId;
+    try {
+        let chats = await getChats();
+        if (!chats) return;
+        const activeChatId = appStore.getState().activeChatId;
 
-    if (activeChatId !== "none") {
-        const newChats = chats.map((chat) => {
-            if (Number(chat.id) == activeChatId) {
-                const newChat = {
-                    ...chat,
-                    activeClass: "chatslist-item__active",
-                };
-                appStore.set({ activeChat: newChat });
-                return newChat;
-            } else {
-                return { ...chat, activeClass: "" };
-            }
-        });
+        if (activeChatId !== "none") {
+            const newChats = chats.map((chat) => {
+                if (Number(chat.id) == activeChatId) {
+                    const newChat = {
+                        ...chat,
+                        activeClass: "chatslist-item__active",
+                    };
+                    appStore.set({ activeChat: newChat });
+                    return newChat;
+                } else {
+                    return { ...chat, activeClass: "" };
+                }
+            });
 
-        chats = newChats;
+            chats = newChats;
+        }
+
+        appStore.set({ chats });
+        // console.log("поместили в стор новые чаты");
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
     }
-
-    appStore.set({ chats });
-    // console.log("поместили в стор новые чаты");
 };
 
 export { initAppService, initChats };

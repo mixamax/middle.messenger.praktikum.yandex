@@ -21,7 +21,6 @@ export default class ChatApi {
         return chat;
     }
 
-    // ****************************************************************** добавил response и parse
     async getChats(): Promise<Chat[] | APIError> {
         const XMLHttpRequest = (await chatApi.get("/chats")) as XMLHttpRequest;
         const chats = XMLHttpRequest.response;

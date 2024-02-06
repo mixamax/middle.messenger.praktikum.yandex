@@ -35,7 +35,13 @@ export const createWebSocket = async (chatId: number, userId: number) => {
         sendBtn.addEventListener("click", buttonHandler);
     });
 
-    function buttonHandler() {
+    function buttonHandler(e: Event) {
+        e.preventDefault();
+
+        if (input.value.trim() === "") {
+            return;
+        }
+
         socket.send(
             JSON.stringify({
                 content: input.value,
@@ -55,18 +61,22 @@ export const createWebSocket = async (chatId: number, userId: number) => {
     });
 
     socket.addEventListener("message", (event) => {
-        const data = JSON.parse(event.data);
-
-        if (Array.isArray(data)) {
-            appStore.set({ messages: data.reverse() });
-        } else {
-            if (data) {
-                const message = data;
-                const newMessages = [...appStore.getState().messages];
-                newMessages.push(message);
-                appStore.set({ messages: newMessages });
-                initChats();
+        try {
+            const data = JSON.parse(event.data);
+            if (Array.isArray(data)) {
+                appStore.set({ messages: data.reverse() });
+            } else {
+                if (data) {
+                    const message = data;
+                    const newMessages = [...appStore.getState().messages];
+                    newMessages.push(message);
+                    appStore.set({ messages: newMessages });
+                    initChats();
+                }
             }
+        } catch (error) {
+            console.log(error);
+            return;
         }
     });
 

@@ -11,9 +11,7 @@ app.get("/sign-up", function (req, res) {
 app.get("/settings", function (req, res) {
     res.send("hello world");
 });
-app.get("/settings", function (req, res) {
-    res.send("hello world");
-});
+
 app.get("/messenger", function (req, res) {
     res.send("hello world");
 });
