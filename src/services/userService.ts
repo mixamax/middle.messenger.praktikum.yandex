@@ -7,32 +7,50 @@ import { ChangePassData, ChangeProfileData } from "../type";
 const userApi = new UserApi();
 
 const changeUserProfile = async (data: ChangeProfileData) => {
-    const response = await userApi.changeUserProfile(data);
-    if (response && typeof response === "object" && "reason" in response) {
-        throw Error(response.reason);
-    }
+    try {
+        const response = await userApi.changeUserProfile(data);
+        if (response && typeof response === "object" && "reason" in response) {
+            throw Error(response.reason);
+        }
 
-    console.log("changedUserProfile", response);
-    appStore.set({ user: response });
+        console.log("changedUserProfile", response);
+        appStore.set({ user: response });
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
+    }
 };
 
 const changeUserPass = async (data: ChangePassData) => {
-    const response = await userApi.changeUserPass(data);
+    try {
+        const response = await userApi.changeUserPass(data);
 
-    if (response && typeof response === "object" && "reason" in response) {
-        throw Error(response.reason);
+        if (response && typeof response === "object" && "reason" in response) {
+            throw Error(response.reason);
+        }
+        router.go("/settings");
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
     }
-    router.go("/settings");
 };
 
 const changeUserAvatar = async (data: FormData) => {
-    const response = await userApi.changeUserAvatar(data);
-    if (response && typeof response === "object" && "reason" in response) {
-        throw Error(response.reason);
-    }
+    try {
+        const response = await userApi.changeUserAvatar(data);
+        if (response && typeof response === "object" && "reason" in response) {
+            throw Error(response.reason);
+        }
 
-    console.log("changeUserAvatar", response);
-    appStore.set({ user: response });
+        console.log("changeUserAvatar", response);
+        appStore.set({ user: response });
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
+    }
 };
 
 export { changeUserProfile, changeUserPass, changeUserAvatar };

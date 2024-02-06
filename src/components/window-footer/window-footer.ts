@@ -21,6 +21,7 @@ class WindowFooter extends Block<IProps, Ref> {
             ...props,
             events: {
                 click: (e) => {
+                    e.preventDefault();
                     const target = e.target as HTMLElement;
                     const click = target.dataset?.click;
                     const button = target.dataset?.button;
@@ -35,9 +36,8 @@ class WindowFooter extends Block<IProps, Ref> {
         });
     }
     inputValueAction() {
-        const inputValue = this.refs.msgInput.value();
-        this.refs.msgInput.setProps({ value: "" });
-        console.log(inputValue);
+        const inputValue = this.refs.msgInput;
+        inputValue.changeValue("");
     }
 
     protected render(): string {
@@ -125,5 +125,4 @@ class WindowFooter extends Block<IProps, Ref> {
 
 export default connect((state) => ({
     activeChatId: state.activeChatId,
-    // messages: state.messages,
 }))(WindowFooter);

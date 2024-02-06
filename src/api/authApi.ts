@@ -1,12 +1,6 @@
 import { HTTPTransport } from "../core/httpTransport";
 import { User } from "../type";
-import {
-    APIError,
-    CreateUser,
-    LoginRequestData,
-    SignUpResponse,
-    // UserDTO,
-} from "./type";
+import { APIError, CreateUser, LoginRequestData, SignUpResponse } from "./type";
 
 const authApi = new HTTPTransport();
 
@@ -35,7 +29,7 @@ export default class AuthApi {
         }) as Promise<void | APIError>;
         return signin;
     }
-    // ****************************************************************** добавил response
+
     async getUserInfo(): Promise<User | APIError> {
         const XMLHttpRequest = (await authApi.get(
             "/auth/user"
@@ -49,10 +43,3 @@ export default class AuthApi {
         return authApi.post("/auth/logout") as Promise<void | APIError>;
     }
 }
-
-// async getChats(): Promise<ChatDTO[] | APIError> {
-//     const XMLHttpRequest = (await chatApi.get("/chats")) as XMLHttpRequest;
-//     const chats = XMLHttpRequest.response;
-
-//     return chats as Promise<ChatDTO[] | APIError>;
-// }

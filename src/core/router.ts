@@ -74,8 +74,8 @@ export type PathName =
     | "/messanger"
     | "/settings/changeprofile"
     | "/settings/changepass"
-    | "/404";
-
+    | "/404"
+    | "/500";
 export class Router<R extends {}> {
     private static __instance: Router<{}>;
     routes: Route<PathName, R>[] = [];
@@ -139,6 +139,7 @@ export class Router<R extends {}> {
             pathname !== "/messanger" &&
             pathname !== "/settings/changeprofile" &&
             pathname !== "/settings/changepass" &&
+            pathname !== "/500" &&
             pathname !== "/404"
         ) {
             path = "/404";

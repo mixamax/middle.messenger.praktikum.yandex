@@ -8,48 +8,68 @@ import { initAppService } from "./initAppService";
 const authApi = new AuthApi();
 
 const getUser = async () => {
-    const responseUser = await authApi.getUserInfo();
-    if (
-        responseUser &&
-        typeof responseUser === "object" &&
-        "reason" in responseUser
-    ) {
-        throw Error(responseUser.reason);
+    try {
+        const responseUser = await authApi.getUserInfo();
+        if (
+            responseUser &&
+            typeof responseUser === "object" &&
+            "reason" in responseUser
+        ) {
+            throw Error(responseUser.reason);
+        }
+        return responseUser;
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
     }
-    return responseUser;
 };
 
 const signin = async (data: LoginRequestData) => {
-    const response = await authApi.login(data);
-    if (response && typeof response === "object" && "reason" in response) {
-        throw Error(response.reason);
+    try {
+        const response = await authApi.login(data);
+        if (response && typeof response === "object" && "reason" in response) {
+            throw Error(response.reason);
+        }
+        initAppService();
+        router.go("/messanger");
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
     }
-
-    // const userInfo = await getUser();
-
-    // appStore.set({ user: userInfo });
-    initAppService();
-    router.go("/messanger");
 };
 
 const signup = async (data: CreateUser) => {
-    const response = await authApi.create(data);
-    console.log(response);
-    if (response && typeof response === "object" && "reason" in response) {
-        throw Error(response.reason);
+    try {
+        const response = await authApi.create(data);
+        console.log(response);
+        if (response && typeof response === "object" && "reason" in response) {
+            throw Error(response.reason);
+        }
+
+        const userInfo = await getUser();
+        console.log(userInfo);
+
+        appStore.set({ user: userInfo });
+        router.go("/messanger");
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
     }
-
-    const userInfo = await getUser();
-    console.log(userInfo);
-
-    appStore.set({ user: userInfo });
-    router.go("/messanger");
 };
 
 const logout = async () => {
-    await authApi.logout();
-    appStore.set({ user: null, chats: [] });
-    router.go("/");
+    try {
+        await authApi.logout();
+        appStore.set({ user: null, chats: [] });
+        router.go("/");
+    } catch (error) {
+        router.go("/500");
+        console.log(error);
+        return;
+    }
 };
 
 export { signin, signup, logout, getUser };

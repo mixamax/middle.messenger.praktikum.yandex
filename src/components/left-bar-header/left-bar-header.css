@@ -6,10 +6,12 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
 .leftbar-header__button-block {
     display: flex;
     justify-content: space-between;
 }
+
 .search-block__button {
     border: none;
     border-radius: 5px;
@@ -23,6 +25,7 @@
     text-wrap: nowrap;
     cursor: pointer;
 }
+
 .search-block__link {
     display: flex;
     align-items: center;
@@ -32,6 +35,7 @@
     font-weight: 500;
     line-height: 12px;
     text-decoration: none;
+
     /* width: 100%; */
     gap: 8px;
     cursor: inherit;

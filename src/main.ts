@@ -52,14 +52,11 @@ router
     .use("/settings/changepass", Pages.ChangePassPage)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    .use("/404", Pages.Page404);
+    .use("/404", Pages.Page404)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/500", Pages.Page500);
 
 router.start();
-
-// declare global {
-//     interface Window {
-//       store: Store<AppState>;
-//     }
-//   window.store = new Store<AppState>(initState);
 
 document.addEventListener("DOMContentLoaded", () => initAppService());
