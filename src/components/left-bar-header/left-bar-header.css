@@ -7,6 +7,25 @@
     padding-right: 10px;
 }
 
+.leftbar-header__button-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-block__button {
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+    background: #efefef;
+    color: var(--text-dark-color);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 12px;
+    text-decoration: none;
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
 .search-block__link {
     display: flex;
     align-items: center;
@@ -16,7 +35,8 @@
     font-weight: 500;
     line-height: 12px;
     text-decoration: none;
-    width: 100%;
+
+    /* width: 100%; */
     gap: 8px;
     cursor: inherit;
 }

@@ -1,5 +1,6 @@
 import Block from "../../core/Block";
 import { Input } from "..";
+import { connect } from "../../../utils/connect";
 
 interface IProps {
     showClosePopup: (popUp: string) => void;
@@ -14,12 +15,13 @@ type Ref = {
     msgInput: Input;
 };
 
-export class WindowFooter extends Block<IProps, Ref> {
+class WindowFooter extends Block<IProps, Ref> {
     constructor(props: IProps) {
         super({
             ...props,
             events: {
                 click: (e) => {
+                    e.preventDefault();
                     const target = e.target as HTMLElement;
                     const click = target.dataset?.click;
                     const button = target.dataset?.button;
@@ -34,9 +36,8 @@ export class WindowFooter extends Block<IProps, Ref> {
         });
     }
     inputValueAction() {
-        const inputValue = this.refs.msgInput.value();
-        this.refs.msgInput.setProps({ value: "" });
-        console.log(inputValue);
+        const inputValue = this.refs.msgInput;
+        inputValue.changeValue("");
     }
 
     protected render(): string {
@@ -121,3 +122,7 @@ export class WindowFooter extends Block<IProps, Ref> {
          `;
     }
 }
+
+export default connect((state) => ({
+    activeChatId: state.activeChatId,
+}))(WindowFooter);

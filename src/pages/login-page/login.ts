@@ -1,6 +1,7 @@
 import Block from "../../core/Block";
 import { InputWithLabel } from "../../components";
-import { navigate } from "../../core/navigate";
+import { signin } from "../../services/authService";
+import router from "../../core/router";
 
 interface IProps {
     inputValidateLogin: () => void;
@@ -39,12 +40,14 @@ class LogIn extends Block<IProps, Refs> {
                     console.log("неверные значения");
                     return;
                 }
-
-                console.log("login:", login);
-                console.log("password:", password);
+                signin({
+                    login: login,
+                    password: password,
+                });
             },
-            onRegistration: () => {
-                navigate("auth");
+            onRegistration: (event) => {
+                event.preventDefault();
+                router.go("/sign-up");
             },
         });
     }

@@ -29,6 +29,7 @@ export class MainButton extends Block<IProps, Ref> {
                  ref="main-button"
                  class="main-button {{class}}"
                  style="margin-top: ${mt}"
+                 type={{type}}
              >{{text}}</button>
          `;
     }

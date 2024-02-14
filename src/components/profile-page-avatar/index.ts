@@ -1,1 +1,1 @@
-export { ProfilePageAvatar } from "./profile-page-avatar";
+export { default as ProfilePageAvatar } from "./profile-page-avatar";

@@ -2,7 +2,9 @@ import "./style.css";
 import Handlebars from "handlebars";
 import * as Components from "./components";
 import { registerComponent } from "./core/registerComponent";
-import { navigate } from "./core/navigate";
+import * as Pages from "./pages";
+import router from "./core/router";
+import { initAppService } from "./services/initAppService";
 
 Object.entries(Components).forEach(([name, component]) =>
     Handlebars.registerPartial(name, component)
@@ -29,4 +31,32 @@ registerComponent("ProfileDataItem", Components.ProfileDataItem);
 registerComponent("ProfilePageAvatar", Components.ProfilePageAvatar);
 registerComponent("ModalAvatar", Components.ModalAvatar);
 
-document.addEventListener("DOMContentLoaded", () => navigate("pagesList"));
+router
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/", Pages.LoginPage)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/sign-up", Pages.AuthPage)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/settings", Pages.ProfilePage)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/messanger", Pages.ChatPage)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/settings/changeprofile", Pages.ChangeProfileDataPage)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/settings/changepass", Pages.ChangePassPage)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/404", Pages.Page404)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    .use("/500", Pages.Page500);
+
+router.start();
+
+document.addEventListener("DOMContentLoaded", () => initAppService());

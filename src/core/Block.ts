@@ -1,19 +1,19 @@
 import EventBus from "./EventBus";
 import { nanoid } from "nanoid";
 import Handlebars from "handlebars";
+import { isEqual } from "../../utils/isEqual";
+// import { isEqual } from "../../utils/isEqual";
 
 export type RefType = {
     [key: string]: Element | Block<object> | object;
 };
 
-export interface BlockClass<P extends object, R extends RefType = RefType>
-    extends Function {
-    new (props: P): Block<P, R>;
-    componentName?: string;
-}
-
 type setProps<T> = {
     [key: string]: T[keyof T];
+};
+
+type PlainObject<T = any> = {
+    [k in string]: T;
 };
 
 class Block<Props extends object, Refs extends RefType = RefType> {
@@ -146,6 +146,11 @@ class Block<Props extends object, Refs extends RefType = RefType> {
 
         const newElement = fragment.firstElementChild as HTMLElement;
         if (this._element) {
+            if (this._element.style.display) {
+                const display = this._element.style.display;
+                newElement.style.display = display;
+            }
+
             this._element.replaceWith(newElement);
         }
 
@@ -221,9 +226,23 @@ class Block<Props extends object, Refs extends RefType = RefType> {
             },
             set(target, prop, value) {
                 const oldTarget = { ...target };
-
+                if (
+                    typeof target[prop as keyof typeof target] === "object" &&
+                    target[prop as keyof typeof target] !== null
+                ) {
+                    if (
+                        isEqual(
+                            target[
+                                prop as keyof typeof target
+                            ] as PlainObject<any>,
+                            value
+                        )
+                    )
+                        return true;
+                } else if (target[prop as keyof typeof target] === value)
+                    return true;
                 target[prop as keyof typeof target] = value;
-
+                // console.log("add feature", prop, value);
                 // Запускаем обновление компоненты
                 // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
                 self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
@@ -236,7 +255,7 @@ class Block<Props extends object, Refs extends RefType = RefType> {
     }
 
     show() {
-        this.getContent()!.style.display = "block";
+        this.getContent()!.style.display = "flex";
     }
 
     hide() {

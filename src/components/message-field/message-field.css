@@ -30,6 +30,7 @@
     padding: 11px;
     background-color: #f8f8f8;
     max-width: 402px;
+    width: fit-content;
 }
 
 .message-image-wrapper {

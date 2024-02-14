@@ -1,0 +1,17 @@
+.empty-window {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-window-text {
+    color: var(--text-middle-color);
+    text-align: center;
+    font-family: Inter, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 12px;
+}

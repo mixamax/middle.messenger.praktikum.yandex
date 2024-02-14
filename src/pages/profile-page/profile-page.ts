@@ -1,12 +1,17 @@
 import Block from "../../core/Block";
-import { navigate } from "../../core/navigate";
 import { ModalAvatar } from "../../components";
+import { logout } from "../../services/authService";
+import { connect } from "../../../utils/connect";
+import { appStore } from "../../store/appStore";
+import router from "../../core/router";
 
 interface IProps {
-    goToChangeData: () => void;
-    goToChangePassword: () => void;
+    goToChangeData: (e: Event) => void;
+    goToChangePassword: (e: Event) => void;
     exit: () => void;
     onAvatarClick: () => void;
+    goBack: (e: Event) => void;
+    closeModal: () => void;
 }
 
 type Refs = {
@@ -17,36 +22,59 @@ class ProfilePage extends Block<IProps, Refs> {
     constructor(props: IProps) {
         super({
             ...props,
-            goToChangeData: () => {
-                navigate("changeProfileDataPage");
+            goToChangeData: (e) => {
+                e.preventDefault();
+                router.go("/settings/changeprofile");
             },
-            goToChangePassword: () => {
-                navigate("changePassPage");
+            goToChangePassword: (e) => {
+                e.preventDefault();
+                router.go("/settings/changepass");
             },
             exit: () => {
-                navigate("login");
+                logout();
             },
-            onAvatarClick: () =>
-                this.refs.modalavatar.setProps({ hiddenClass: "" }),
+            goBack: (e) => {
+                e.preventDefault();
+                router.go("/messanger");
+            },
+            onAvatarClick: () => {
+                this.refs.modalavatar.setProps({ hiddenClass: "" });
+            },
+            closeModal: () => {
+                this.refs.modalavatar.setProps({ hiddenClass: "modal-hidden" });
+            },
         });
     }
 
     protected render(): string {
+        const user = appStore.getState().user;
         return `
         {{#>PageWrapper}}
-             {{{ModalAvatar ref="modalavatar" title="Загрузите файл" hiddenClass="modal-hidden" buttonText="Поменять"}}}
+             {{{ModalAvatar ref="modalavatar" title="Загрузите файл" hiddenClass="modal-hidden" buttonText="Поменять" closeModal=closeModal }}}
              {{#>LeftBar width="narrow"}}
-                  {{{LeftBarBackButton}}}
+                  {{{LeftBarBackButton onClick=goBack}}}
              {{/LeftBar}}
              {{#>MainWindow}}
                  {{{ProfilePageAvatar onAvatarClick=onAvatarClick}}}
                  {{#>ProfileForm}}
-                     {{{ProfileDataItem title="Почта" value="ivan@ivan.ru"}}}
-                     {{{ProfileDataItem title="Логин" value="ivan"}}}
-                     {{{ProfileDataItem title="Имя" value="Иван"}}}
-                     {{{ProfileDataItem title="Фамилия" value="Иванов"}}}
-                     {{{ProfileDataItem title="Имя в чате" value="Иван"}}}
-                     {{{ProfileDataItem title="Телефон" value="222-32-22"}}}
+                     {{{ProfileDataItem title="Почта" value="${
+                         user?.email || ""
+                     }"}}}
+                     {{{ProfileDataItem title="Логин" value="${
+                         user?.login || ""
+                     }"}}}
+                     {{{ProfileDataItem title="Имя" value="${
+                         user?.first_name || ""
+                     }"}}}
+                     {{{ProfileDataItem title="Фамилия" value="${
+                         user?.second_name || ""
+                     }"}}}
+                     {{{ProfileDataItem title="Имя в чате" value="${
+                         user?.display_name || ""
+                     }"}}}
+                     {{{ProfileDataItem title="Телефон" value="${
+                         user?.phone || ""
+                     }"}}}
                  {{/ProfileForm}}
                  {{#>ProfileForm mt="40px"}}
                       {{{ChangeDataItem color="blue" text="Изменить данные" onClick=goToChangeData}}}
@@ -58,4 +86,5 @@ class ProfilePage extends Block<IProps, Refs> {
         `;
     }
 }
-export default ProfilePage;
+
+export default connect((state) => ({ user: state.user }))(ProfilePage);

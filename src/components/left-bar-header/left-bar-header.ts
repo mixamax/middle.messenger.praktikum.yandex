@@ -1,9 +1,9 @@
 import Block from "../../core/Block";
 import { Input } from "..";
-import { navigate } from "../../core/navigate";
+import router from "../../core/router";
 
 interface IProps {
-    // onClick: (e: Event) => void;
+    openModal: (e: Event) => void;
     events: {
         click: (e: Event) => void;
     };
@@ -23,8 +23,12 @@ export class LeftBarHeader extends Block<IProps, Ref> {
                 click: (e) => {
                     const target = e.target as HTMLElement;
                     const profile = target.dataset?.profile;
-                    if (profile) {
-                        navigate("profilePage");
+                    if (profile === "profile") {
+                        e.preventDefault();
+                        router.go("/settings");
+                    }
+                    if (profile === "button") {
+                        props.openModal(e);
                     }
                 },
             },
@@ -38,11 +42,14 @@ export class LeftBarHeader extends Block<IProps, Ref> {
 
     protected render(): string {
         return `
-        <div class="leftbar-header__search-block">
-            <a class="search-block__link" href="#" > 
-                <span data-profile="profile">Профиль</span> 
-                <img src="/images/right-icon.svg" alt="стрелка_вправо" ></img>
-            </a> 
+        <div class="leftbar-header__search-block">     
+            <div class="leftbar-header__button-block">
+                <button  class="search-block__button" data-profile="button">+ создать чат</button>
+                <a class="search-block__link" href="#" > 
+                    <span data-profile="profile">Профиль</span> 
+                    <img src="/images/right-icon.svg" alt="стрелка_вправо" ></img>
+                </a> 
+            </div>
             {{{Input className="search-block__input" type="text" placeholder="Поиск" ref="leftbarHeaderInput" blur=blur inputFocus=inputFocus}}}
         </div>
          `;

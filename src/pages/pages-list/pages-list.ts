@@ -1,5 +1,5 @@
 import Block from "../../core/Block";
-import { navigate } from "../../core/navigate";
+// import { navigate } from "../../core/navigate";
 
 interface IProps {
     events: {
@@ -15,8 +15,9 @@ class PagesList extends Block<IProps, Refs> {
             ...props,
             events: {
                 click: (e) => {
-                    const element = e.target as HTMLElement;
-                    navigate(element.id);
+                    // const element = e.target as HTMLElement;
+                    // navigate(element.id);
+                    console.log(e);
                 },
             },
         });

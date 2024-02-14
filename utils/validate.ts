@@ -25,5 +25,8 @@ export function validate(type: string, value: string): boolean {
         const isNorm = regexp.test(value);
         return isNorm;
     }
+    if (type === "chatName") {
+        if (value.trim() === "") return false;
+    }
     return true;
 }

@@ -6,8 +6,10 @@ interface IProps {
     events: {
         click: (e: Event) => void;
     };
-    actionWithUser: (e: Event) => void;
+    actionWithUserOrChat: (e: Event) => void;
+    clickOnButton: () => void;
     title: string;
+    closeModal: () => void;
 }
 
 type Ref = {
@@ -22,30 +24,45 @@ export class Modal extends Block<IProps, Ref> {
             events: {
                 click: (e) => this.closeModal(e),
             },
-            actionWithUser: (e) => {
+            actionWithUserOrChat: (e) => {
                 e.preventDefault();
-                const userLogin = this.refs.userAction.value();
-                console.log("Логин:", userLogin);
+                this.props.clickOnButton();
                 this.props.closeUpPopup();
-                this.refs.modal.classList.add("modal-hidden");
+                if (!this.refs.userAction.isErrorProps())
+                    this.refs.modal.classList.add("modal-hidden");
             },
         });
     }
     closeModal(e: Event) {
-        const modal = document.querySelector(".modal");
+        // const modal = document.querySelector(".modal");
+        const modal = this.refs.modal;
         if (e.target === modal) {
-            this.refs.modal.classList.add("modal-hidden");
-            this.props.closeUpPopup();
+            this.props.closeModal();
         }
+    }
+
+    public getInputValueAndIsError() {
+        return {
+            value: this.refs.userAction.value(),
+            isError: this.refs.userAction.isErrorProps(),
+        };
     }
 
     protected render(): string {
         return `
         <div class="modal {{hiddenClass}}" ref="modal">
             {{#>FormWrapper title=title size="s"}}
-            {{{InputWithLabel id="input-modal" placeholder="Логин" labelTitle="Логин" type="text" className="input-custom"  ref="userAction" }}}
+            {{{InputWithLabel id="input-modal" 
+                placeholder=placeholder 
+                labelTitle=labelTitle 
+                type="text" 
+                className="input-custom"  
+                ref="userAction" 
+                name=name
+                errMsg=errMsg
+            }}}
             <div class="modal-button-field">
-                 {{{MainButton class="contained" text=buttonText onClick=actionWithUser}}}
+                 {{{MainButton class="contained" text=buttonText onClick=actionWithUserOrChat}}}
             </div >
             {{/FormWrapper}}
         </div>

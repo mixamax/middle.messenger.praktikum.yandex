@@ -34,6 +34,9 @@ export class Input extends Block<IProps, Ref> {
     public value() {
         return this.refs.input.value;
     }
+    public changeValue(v: string) {
+        this.refs.input.value = v;
+    }
 
     protected render(): string {
         const { inputError, placeholder, type, name, id, value, className } =

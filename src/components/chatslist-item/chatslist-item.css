@@ -40,6 +40,9 @@
     line-height: 15px;
     margin: 4px 0;
     cursor: inherit;
+    max-width: 200px;
+    max-height: 32px;
+    overflow: hidden;
 }
 
 .chatslist-item__timeinfo {
