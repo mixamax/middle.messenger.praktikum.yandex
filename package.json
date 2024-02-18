@@ -18,7 +18,7 @@
         "lint": "stylelint \"**/*.css\"",
         "lint:fix": "stylelint '**/*{.css,.scss}' --fix",
         "test": "mocha --exit",
-        "prepare": "husky || true"
+        "prepare": "husky install"
     },
     "lint-staged": {
         "*.css": "npm run lint"
