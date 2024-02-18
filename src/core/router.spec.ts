@@ -13,7 +13,7 @@ type Refs = {};
 describe("Router test", () => {
     let router: Router<typeof Block>;
     let PageClass: BlockConstructable<object, typeof Block>;
-    beforeEach(() => {
+    before(() => {
         router = new Router("app");
         class testPage extends Block<IProps, Refs> {
             constructor(props: IProps) {
@@ -34,6 +34,7 @@ describe("Router test", () => {
     afterEach(() => {
         // Restore the default sandbox here
         sinon.restore();
+        // window.onpopstate = null;
     });
 
     it("метод use должен добавлять Route в массив router.routes", () => {

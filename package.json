@@ -17,7 +17,8 @@
         "start": "tsc && vite build && node server.js",
         "lint": "stylelint \"**/*.css\"",
         "lint:fix": "stylelint '**/*{.css,.scss}' --fix",
-        "test": "mocha"
+        "test": "mocha --exit",
+        "prepare": "husky"
     },
     "devDependencies": {
         "@types/chai": "^4.3.11",
