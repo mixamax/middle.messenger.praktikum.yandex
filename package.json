@@ -5,7 +5,7 @@
     "type": "module",
     "husky": {
         "hooks": {
-            "pre-commit": "npm run test && npm run lint",
+            "pre-commit": "npm run test && lint",
             "pre-push": "npm run build"
         }
     },
@@ -18,7 +18,7 @@
         "lint": "stylelint \"**/*.css\"",
         "lint:fix": "stylelint '**/*{.css,.scss}' --fix",
         "test": "mocha --exit",
-        "prepare": "husky"
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@types/chai": "^4.3.11",
