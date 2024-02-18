@@ -3,6 +3,12 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run test && lint",
+            "pre-push": "npm run build"
+        }
+    },
     "scripts": {
         "dev": "vite",
         "prebuild": "tsc --noEmit",
@@ -13,12 +19,6 @@
         "lint:fix": "stylelint '**/*{.css,.scss}' --fix",
         "test": "mocha --exit",
         "prepare": "husky install"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run test && lint",
-            "pre-push": "npm run build"
-        }
     },
     "devDependencies": {
         "@types/chai": "^4.3.11",
