@@ -19,9 +19,10 @@ const getUser = async () => {
         }
         return responseUser;
     } catch (error) {
-        router.go("/500");
+        router.go("/");
         console.log(error);
-        return;
+        throw error;
+        // return;
     }
 };
 

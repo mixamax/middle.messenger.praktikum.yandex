@@ -56,6 +56,7 @@ router
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     .use("/500", Pages.Page500);
+console.log(typeof router.routes[0]);
 
 router.start();
 

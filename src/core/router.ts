@@ -5,7 +5,7 @@ interface BlockConstructable<Props extends object, R extends {}> {
     new (): Block<Props, R>;
 }
 
-class Route<Path extends string, R extends {}> {
+export class Route<Path extends string, R extends {}> {
     private _pathname;
     private _blockClass;
     private _block: Block<object> | null;
@@ -145,8 +145,7 @@ export class Router<R extends {}> {
             path = "/404";
         }
 
-        this.history!.pushState({}, "", path);
-        // console.log(this.history?.state);
+        this.history!.pushState({ path }, "", path);
         this._onRoute(path);
     }
 
