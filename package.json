@@ -18,7 +18,7 @@
         "lint": "stylelint \"**/*.css\"",
         "lint:fix": "stylelint '**/*{.css,.scss}' --fix",
         "test": "mocha --exit",
-        "prepare": "husky install"
+        "prepare": "husky || true"
     },
     "devDependencies": {
         "@types/chai": "^4.3.11",
