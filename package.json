@@ -20,6 +20,9 @@
         "test": "mocha --exit",
         "prepare": "husky || true"
     },
+    "lint-staged": {
+        "*.css": "npm run lint"
+    },
     "devDependencies": {
         "@types/chai": "^4.3.11",
         "@types/mocha": "^10.0.6",
