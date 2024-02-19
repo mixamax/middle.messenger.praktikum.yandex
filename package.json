@@ -9,13 +9,14 @@
         }
     },
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --open",
         "prebuild": "tsc --noEmit",
         "build": "npm run prebuild && vite build",
         "preview": "vite preview",
         "start": "tsc && vite build && node server.js",
         "lint": "stylelint \"**/*.css\"",
         "lint:fix": "stylelint '**/*{.css,.scss}' --fix",
+        "eslint": "eslint src --ext .ts",
         "test": "mocha --exit",
         "prepare": "husky install"
     },
