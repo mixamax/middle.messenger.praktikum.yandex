@@ -9,7 +9,20 @@ const initAppService = async () => {
     let userInfo = null;
     try {
         userInfo = await getUser();
+        appStore.set({ user: userInfo });
+
+        initChats();
+
+        if (userInfo && window.location.pathname === "/") {
+            router.go("/messanger");
+        } else if (userInfo && window.location.pathname === "/sign-up") {
+            router.go("/404");
+        } else {
+            // window.history.pushState({}, "", "/");
+            router.go(window.location.pathname as PathName);
+        }
     } catch (error) {
+        console.log("ERROR");
         if (window.location.pathname === "/sign-up") {
             router.go("/sign-up");
         } else {
@@ -17,18 +30,6 @@ const initAppService = async () => {
         }
 
         return;
-    }
-    appStore.set({ user: userInfo });
-
-    initChats();
-
-    if (userInfo && window.location.pathname === "/") {
-        router.go("/messanger");
-    } else if (userInfo && window.location.pathname === "/sign-up") {
-        router.go("/404");
-    } else {
-        // window.history.pushState({}, "", "/");
-        router.go(window.location.pathname as PathName);
     }
 };
 
